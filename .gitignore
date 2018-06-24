@@ -1,0 +1,26 @@
+# System
+.DS_Store
+Thumbs.db
+
+# IntelliJ
+out/
+.idea/*
+!.idea/inspectionProfiles
+!.idea/codeStyles
+!.idea/runConfigurations
+
+*.iws
+.gradle
+.java-version
+
+build/
+*.log
+/classes/
+
+node_modules/
+functional-test-failure.png
+
+generated/
+
+*LOGSTASH_LOG_FILE_IS_UNDEFINED
+*LOG_FILE_IS_UNDEFINED
