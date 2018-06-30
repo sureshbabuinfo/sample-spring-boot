@@ -1,7 +1,7 @@
-package com.formsdirectinc.applicationcenter.service
+package com.sfodreamz.service
 
-import com.formsdirectinc.applicationcenter.dao.User
-import com.formsdirectinc.applicationcenter.dao.UserDAO
+import com.sfodreamz.dao.User
+import com.sfodreamz.dao.UserDAO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.stereotype.Service

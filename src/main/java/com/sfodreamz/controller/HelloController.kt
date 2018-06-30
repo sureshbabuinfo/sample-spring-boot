@@ -1,7 +1,7 @@
-package com.formsdirectinc.applicationcenter.controller
+package com.sfodreamz.controller
 
-import com.formsdirectinc.applicationcenter.dao.User
-import com.formsdirectinc.applicationcenter.service.UserService
+import com.sfodreamz.dao.User
+import com.sfodreamz.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

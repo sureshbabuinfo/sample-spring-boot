@@ -1,4 +1,4 @@
-package com.formsdirectinc.applicationcenter.dao
+package com.sfodreamz.dao
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull

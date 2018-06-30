@@ -1,4 +1,4 @@
-package com.formsdirectinc.applicationcenter.config
+package com.sfodreamz.config
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
