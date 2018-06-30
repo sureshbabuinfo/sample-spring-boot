@@ -1,5 +1,8 @@
 package com.formsdirectinc.applicationcenter.dao
 
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.repository.CrudRepository
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
@@ -8,24 +11,9 @@ import javax.persistence.criteria.Root
 import sun.misc.MessageUtils.where
 import javax.persistence.criteria.ParameterExpression
 
+interface UserDAO:CrudRepository<User, Long> {
 
-
-
-
-
-
-
-@Repository
-class UserDAO {
-
-    @PersistenceContext
-    private val entityManager: EntityManager? = null
-
-    fun create(user: User) {
-        entityManager!!.persist(user)
-    }
-
-    fun findByEmail(email: String): User {
+    /*fun findByEmail(email: String): User {
         val criteriaBuilder = entityManager!!.getCriteriaBuilder().apply {
             parameter(String::class.java)
         }
@@ -34,5 +22,5 @@ class UserDAO {
         val c = q.from(User::class.java)
 
         q.select(c).where(criteriaBuilder.gt(c.get("population"), p))
-    }
+    }*/
 }

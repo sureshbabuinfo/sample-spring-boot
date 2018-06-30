@@ -5,14 +5,14 @@ import javax.validation.constraints.NotNull
 
 
 @Entity
-@Table(name = "user", uniqueConstraints=[UniqueConstraint(columnNames=arrayOf("email"))])
+@Table(name = "user", uniqueConstraints=[UniqueConstraint(columnNames=arrayOf("emailId"))])
 data class User(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long? = null,
-        @Column
+        var id: Long? = null,
+        @Column(name = "emailId")
         @NotNull
-        val email: String? = null,
+        var emailId: String? = null,
         @Column
-        val name: String? = null
+        var name: String? = null
 )

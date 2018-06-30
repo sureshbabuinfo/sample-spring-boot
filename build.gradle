@@ -30,13 +30,25 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("junit:junit")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa") {
+        exclude group: 'org.apache.tomcat', module: 'tomcat-jdbc'
+    }
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile "org.springframework:spring-orm:5.0.7.RELEASE"
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    compile "com.zaxxer:HikariCP:3.2.0"
+    compile ("com.zaxxer:HikariCP:3.2.0") {
+        exclude group: 'org.hibernate', module: 'hibernate-core'
+    }
+    compile('org.hibernate:hibernate-hikaricp:5.2.11.Final') {
+        exclude group: 'com.zaxxer', module: 'HikariCP'
+        exclude group: 'org.hibernate', module: 'hibernate-core'
+    }
     compile "org.hibernate:hibernate-core:5.3.1.Final"
-    compile "org.hibernate:hibernate-annotations:3.5.6-Final"
-    compile "org.springframework:spring-orm:5.0.7.RELEASE"
+    compile "mysql:mysql-connector-java:5.1.46"
+
+    testCompile("junit:junit")
 }
 compileKotlin {
     kotlinOptions {

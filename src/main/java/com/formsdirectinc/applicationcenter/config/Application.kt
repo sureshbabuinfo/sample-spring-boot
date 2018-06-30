@@ -1,48 +1,37 @@
 package com.formsdirectinc.applicationcenter.config
 
-import com.zaxxer.hikari.HikariDataSource
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.domain.EntityScan
+import org.springframework.boot.builder.SpringApplicationBuilder
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean
-import org.springframework.orm.hibernate5.HibernateTransactionManager
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.transaction.annotation.EnableTransactionManagement
-import java.util.*
-import javax.sql.DataSource
+import org.springframework.web.servlet.ViewResolver
+import org.springframework.web.servlet.config.annotation.EnableWebMvc
+import org.springframework.web.servlet.view.InternalResourceViewResolver
 
 
 @SpringBootApplication
 @EnableTransactionManagement
-open class Application {
-    @Bean
-    open fun dataSource(): DataSource {
-        return HikariDataSource().apply {
-            this.jdbcUrl = "jdbc:mysql://10.0.102.202:3306/fr"
-            this.username = "sureshbabu"
-            this.password = "sureshbabu"
-        }
-    }
+@EnableWebMvc
+@ComponentScan(basePackages = arrayOf("com.formsdirectinc"))
+@EnableJpaRepositories(basePackages = arrayOf("com.formsdirectinc"))
+@EntityScan("com.formsdirectinc")
+open class Application: SpringBootServletInitializer() {
+
+	override fun configure(application: SpringApplicationBuilder): SpringApplicationBuilder {
+		return application.sources(Application::class.java)
+	}
 
     @Bean
-    open fun sessionFactory(): LocalSessionFactoryBean {
-        return LocalSessionFactoryBean().apply {
-            setDataSource(dataSource())
-            hibernateProperties = Properties().apply {
-                setProperty("dialect", "org.hibernate.dialect.MySQLDialect")
-                setProperty("format_sql", "true")
-                setProperty("generator.class", "org.hibernate.id.IdentityGenerator")
-                setProperty("current_session_context_class", "thread")
-                setProperty("hbm2ddl.auto", "update")
-            }
-            setPackagesToScan("com.formsdirectinc")
-        }
-    }
-
-    @Bean
-    open fun transactionManager(): HibernateTransactionManager {
-        return HibernateTransactionManager().apply {
-            sessionFactory = sessionFactory().`object`
-        }
+    open fun getViewResolver(): ViewResolver {
+        val resolver = InternalResourceViewResolver()
+        resolver.setPrefix("/WEB-INF/jsp/")
+        resolver.setSuffix(".jsp")
+        return resolver
     }
 }
 
